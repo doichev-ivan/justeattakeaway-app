@@ -1,0 +1,13 @@
+.nav {
+  padding-top: 20px;
+  margin-right: 16px;
+  flex: 1;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  color: #205A6D;
+  margin: 0 0 16px;
+}

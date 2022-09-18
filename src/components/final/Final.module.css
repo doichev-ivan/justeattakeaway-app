@@ -1,0 +1,46 @@
+.final {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: -24px;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.imageWin {
+  height: 167px;
+  margin-bottom: 20px;
+}
+
+.imageLose {
+  height: 284px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 41px;
+  line-height: 52px;
+  color: #FFFFFF;
+  margin: 0 0 16px;
+  padding: 0;
+}
+
+.button {
+  background: #FFFFFF;
+  border-radius: 28px;
+  padding: 16px;
+  margin: 0;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #1574F5;
+  width: 243px;
+  outline: none;
+  box-shadow: none;
+  border: none;
+}

@@ -1,0 +1,77 @@
+.content {
+  padding: 32px 16px;
+  width: 475px;
+  height: 100%;
+  background-color: #FFFFFF;
+  position: relative;
+}
+
+.move {
+  margin-bottom: 17px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.opponent {
+  flex-direction: row;
+}
+
+.user {
+  flex-direction: row-reverse;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+}
+
+.opponent .avatar {
+  margin-right: 16px;
+}
+
+.user .avatar {
+  margin-left: 16px;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+}
+
+.opponent .details {
+  align-items: flex-start;
+}
+
+.user .details {
+  align-items: flex-end;
+}
+
+.action {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.opponent .action {
+  background-color: #205A6D;
+}
+
+.user .action {
+  background-color: #1574F5;
+}
+
+.result {
+  width: 198px;
+  background: #F8F5F2;
+  border-radius: 2px;
+  padding: 9px 16px 7px;
+  color: #0A3847;
+  margin-top: 8px;
+}

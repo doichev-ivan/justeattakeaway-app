@@ -1,0 +1,38 @@
+.menu {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  color: #205A6D;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menuItem {
+  padding: 23px 24px;
+  margin: 0;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #D7D7D7;
+}
+
+.menuItem:last-child {
+  border: none;
+}
+
+.arrow {
+  height: 16px;
+  margin-right: 3px;
+  fill: #1574F5;
+}
+
+.active {
+  background: #1574F5;
+  color: #ffffff;
+}
+
+.active .arrow {
+  fill: #ffffff;
+}
