@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './Nav.module.css'
-import Menu from '../menu/Menu'
+import Menu from '../../../../components/menu/Menu'
 
 const Nav: React.FC = () => (
   <nav className={styles.nav}>

@@ -1,4 +1,4 @@
-enum SocketEvents {
+export enum SocketServerEvents {
   RandomNumber = 'randomNumber',
   ActivateYourTurn = 'activateYourTurn',
   GameOver = 'gameOver',
@@ -6,7 +6,9 @@ enum SocketEvents {
   Error = 'error',
   Message = 'message',
   ListTrigger = 'listTrigger',
-  Connection = 'connection',
+}
+
+export enum SocketClientEvents {
   Login = 'login',
   JoinRoom = 'joinRoom',
   SendNumber = 'sendNumber',
@@ -14,4 +16,8 @@ enum SocketEvents {
   LetsPlay = 'letsPlay',
 }
 
-export default SocketEvents
+export enum SocketDefaultEvents {
+  Connect = 'connect',
+  ConnectError = 'connect_error',
+  Disconnect = 'disconnect',
+}

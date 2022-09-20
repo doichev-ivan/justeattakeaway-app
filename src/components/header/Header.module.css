@@ -15,6 +15,10 @@
   margin-right: 12px;
 }
 
+.text {
+  flex: 1;
+}
+
 .title {
   font-size: 18px;
   line-height: 20px;
@@ -28,4 +32,30 @@
   line-height: 20px;
   margin: 0;
   padding: 0;
+}
+
+.username {
+  font-size: 18px;
+  line-height: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.logout {
+  font-size: 16px;
+  line-height: 20px;
+  margin: 0;
+  padding: 0;
+  text-decoration: underline;
+  outline: none;
+  box-shadow: none;
+  border: none;
+  cursor: pointer;
+  background: none;
+  color: #FFFFFF;
+  margin-left: 20px;
+}
+
+.logout:hover {
+  text-decoration: none;
 }

@@ -12,6 +12,7 @@
 .main {
   display: flex;
   align-items: flex-start;
+  justify-content: center;
   padding: 0 24px;
   flex: 1;
 }

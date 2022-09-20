@@ -1,4 +1,5 @@
 import io, { Socket } from 'socket.io-client'
+import { SocketDefaultEvents } from './SocketEvents'
 
 export default class SocketClient {
   private socket: typeof Socket | null = null
@@ -24,5 +25,29 @@ export default class SocketClient {
     if (this.socket != null) {
       this.socket.on(eventName, func)
     }
+  }
+
+  init (connectCallback?: () => void): void {
+    this.connect()
+    this.on(SocketDefaultEvents.Connect, () => {
+      console.log('connected')
+      connectCallback?.()
+    })
+    this.on(SocketDefaultEvents.ConnectError, () => {
+      setTimeout(() => {
+        this.socket?.connect()
+      }, 1000)
+    })
+    this.on(SocketDefaultEvents.Disconnect, (reason) => {
+      if (reason === 'io server disconnect') {
+        // the disconnection was initiated by the server, you need to reconnect manually
+        this.socket?.connect()
+      }
+      // else the socket will automatically try to reconnect
+    })
+  }
+
+  get isConnected (): boolean {
+    return this.socket?.connected === true
   }
 }

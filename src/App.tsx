@@ -2,22 +2,18 @@ import React from 'react'
 import styles from './App.module.css'
 import Header from './components/header/Header'
 import Footer from './components/footer/Footer'
-import Nav from './components/nav/Nav'
-import Content from './components/content/Content'
-import { useAppDispatch } from './logic/hooks'
-import { appActions } from './logic/slice'
+import Login from './pages/login/Login'
+import Game from './pages/game/Game'
+import { useAppSelector } from './logic/hooks'
+import { selectUsername } from './pages/login/loginSlice'
 
 const App: React.FC = () => {
-  const dispatch = useAppDispatch()
-  React.useEffect(() => {
-    dispatch(appActions.startConnecting())
-  }, [])
+  const username = useAppSelector(selectUsername)
   return (
     <div className={styles.app}>
       <Header/>
       <main className={styles.main}>
-        <Nav/>
-        <Content/>
+        {username === null ? <Login/> : <Game/> }
       </main>
       <Footer/>
     </div>

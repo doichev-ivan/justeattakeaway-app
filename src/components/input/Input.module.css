@@ -1,0 +1,23 @@
+.input {
+  background: #FFFFFF;
+  border-radius: 10px;
+  padding: 16px;
+  margin: 0 0 16px;
+  font-family: 'Takeaway Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #1574F5;
+  width: 243px;
+  outline: none;
+  box-shadow: none;
+  border: 1px solid #1574F5;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.input:focus {
+  box-shadow: inset 0 0 5px 0 #FF8000;
+  border-color: #FF8000;
+}

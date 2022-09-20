@@ -1,20 +1,49 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
+import { configureStore, ThunkAction, Action, combineReducers } from '@reduxjs/toolkit'
 import counterReducer from '../features/counter/counterSlice'
-import { appReducer } from './slice'
+import { gameReducer } from '../pages/game/gameSlice'
+import { loginReducer } from '../pages/login/loginSlice'
 import SocketClient from '../api/socket/SocketClient'
-import middleware from './middleware'
+import socketMiddleware from './socketMiddleware'
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER
+} from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
+
+const persistConfig = {
+  key: 'justeattakeaway-app',
+  version: 1,
+  storage
+}
+
+const rootReducer = combineReducers({
+  counter: counterReducer,
+  login: loginReducer,
+  game: gameReducer
+})
+
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 export const socket = new SocketClient()
 
 export const store = configureStore({
-  reducer: {
-    counter: counterReducer,
-    app: appReducer
-  },
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) => {
-    return getDefaultMiddleware().concat([middleware(socket)])
+    return getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+      }
+    }).concat([socketMiddleware(socket)])
   }
 })
+
+export const persistor = persistStore(store)
 
 export type AppDispatch = typeof store.dispatch
 export type RootState = ReturnType<typeof store.getState>
