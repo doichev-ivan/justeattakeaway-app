@@ -12,7 +12,7 @@ const Rooms: React.FC = () => {
     dispatch(getRooms())
   }, [dispatch])
 
-  const items = rooms.map(r => ({ id: r.owner, label: r.name })) // room.id was not unique
+  const items = rooms.map(r => ({ id: r.id, label: r.name })) // room.id was not unique
   const handleSelect = React.useCallback((id: string) => {
     if (id !== currentRoomId) dispatch(roomsActions.joinRoom({ id }))
   }, [currentRoomId])

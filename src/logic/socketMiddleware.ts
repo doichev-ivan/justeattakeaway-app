@@ -8,7 +8,7 @@ import { REHYDRATE } from 'redux-persist'
 const socketMiddleware = (socket: SocketClient) => store => next => action => {
   if (action.type === REHYDRATE) {
     const username = selectUsername(action.payload)
-    if (username !== null) socket.init()
+    if (username !== null) socket.init(() => socket.emit(SocketClientEvents.Login, { username }))
   }
 
   if (loginActions.loginStart.match(action)) {

@@ -2,18 +2,18 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import restClient from '../../../../api/rest/RestClient'
 import restUrls from '../../../../api/rest/restUrls'
 import { RootState } from '../../../../logic/store'
+import { RoomServer } from '../../../../api/rest/RestTypes'
 
 export interface Room {
-  'id': string
+  'id': string // we will use owner as id, because initial id is not unique in db
   'name': string
-  'owner': string
   'type': 'cpu' | 'human'
 }
 
 export interface RoomsState {
   rooms: Room[]
   status: 'idle' | 'loading' | 'failed'
-  currentRoomId?: string // we will use owner here, because id is not unique in db
+  currentRoomId?: string
 }
 
 const initialState: RoomsState = {
@@ -25,7 +25,7 @@ const initialState: RoomsState = {
 export const getRooms = createAsyncThunk(
   'rooms/getRooms',
   async () => {
-    const rooms = await restClient.get<Room[]>(restUrls.Rooms)
+    const rooms = await restClient.get<RoomServer[]>(restUrls.Rooms)
     // The value we return becomes the `fulfilled` action payload
     return rooms
   }
@@ -48,7 +48,7 @@ export const roomsSlice = createSlice({
       })
       .addCase(getRooms.fulfilled, (state, action) => {
         state.status = 'idle'
-        state.rooms = action.payload
+        state.rooms = action.payload.map(sr => ({ ...sr, id: sr.owner }))
       })
       .addCase(getRooms.rejected, (state) => {
         state.status = 'failed'
