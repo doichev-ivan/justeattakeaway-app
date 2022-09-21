@@ -2,7 +2,8 @@ import { configureStore, ThunkAction, Action, combineReducers } from '@reduxjs/t
 import counterReducer from '../features/counter/counterSlice'
 import { gameReducer } from '../pages/game/gameSlice'
 import { loginReducer } from '../pages/login/loginSlice'
-import SocketClient from '../api/socket/SocketClient'
+import { roomsReducer } from '../pages/game/partials/rooms/roomsSlice'
+import socketClient from '../api/socket/SocketClient'
 import socketMiddleware from './socketMiddleware'
 import {
   persistStore,
@@ -25,12 +26,11 @@ const persistConfig = {
 const rootReducer = combineReducers({
   counter: counterReducer,
   login: loginReducer,
-  game: gameReducer
+  game: gameReducer,
+  rooms: roomsReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
-
-export const socket = new SocketClient()
 
 export const store = configureStore({
   reducer: persistedReducer,
@@ -39,7 +39,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
       }
-    }).concat([socketMiddleware(socket)])
+    }).concat([socketMiddleware(socketClient)])
   }
 })
 

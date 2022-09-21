@@ -1,11 +1,11 @@
 import React from 'react'
-import Nav from './partials/nav/Nav'
+import Rooms from './partials/rooms/Rooms'
 import Content from './partials/content/Content'
 
 const Game: React.FC = () => {
   return (
     <>
-      <Nav/>
+      <Rooms/>
       <Content/>
     </>
   )

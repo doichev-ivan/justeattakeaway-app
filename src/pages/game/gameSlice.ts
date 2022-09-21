@@ -16,5 +16,3 @@ const gameSlice = createSlice({
 
 export const gameActions = gameSlice.actions
 export const gameReducer = gameSlice.reducer
-
-export default gameSlice

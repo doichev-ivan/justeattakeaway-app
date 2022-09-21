@@ -2,12 +2,30 @@ import React from 'react'
 import { ReactComponent as Arrow } from './arrow.svg'
 import styles from './Menu.module.css'
 
-const Menu: React.FC = () => (
+interface MenuItem {
+  id: string
+  label: string
+}
+
+interface Props {
+  items: MenuItem[]
+  selected?: MenuItem['id']
+  onSelect?: (id: MenuItem['id']) => void
+}
+
+const Menu: React.FC<Props> = ({ items, selected, onSelect }: Props) => (
   <ul className={styles.menu}>
-    <li className={styles.menuItem}>Berlin CPU <Arrow className={styles.arrow}/></li>
-    <li className={styles.menuItem}>Amsterdam CPU <Arrow className={styles.arrow}/></li>
-    <li className={[styles.menuItem, styles.active].join(' ')}>Sabrican <Arrow className={styles.arrow}/></li>
+    {items.map(item => (
+      <li
+        key={item.id}
+        className={[styles.menuItem, item.id === selected ? styles.active : ''].join(' ')}
+        onClick={() => onSelect?.(item.id)}
+      >
+        {item.label}
+        <Arrow className={styles.arrow}/>
+      </li>
+    ))}
   </ul>
 )
 
-export default Menu
+export default React.memo(Menu)

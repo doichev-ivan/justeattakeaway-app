@@ -1,11 +1,11 @@
 import io, { Socket } from 'socket.io-client'
 import { SocketDefaultEvents } from './SocketEvents'
 
-export default class SocketClient {
+class SocketClient {
   private socket: typeof Socket | null = null
 
   connect (): void {
-    this.socket = io(process.env.REACT_APP_API_URL as string)
+    this.socket = io(process.env.REACT_APP_SOCKET_API_URL as string)
   }
 
   disconnect (): void {
@@ -51,3 +51,6 @@ export default class SocketClient {
     return this.socket?.connected === true
   }
 }
+
+const socketClient = new SocketClient()
+export default socketClient
