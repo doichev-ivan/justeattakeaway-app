@@ -125,6 +125,7 @@ const socketConnectHandler = (store: any, socket: SocketClient, username: string
     const winner = selectWinner(store.getState())
     if (!winner) {
       store.dispatch(gameActions.setWinner({ winner: message.user }))
+      store.dispatch(gameActions.setIsPlaying({ isPlaying: false }))
     }
   })
 }

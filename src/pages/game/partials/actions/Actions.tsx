@@ -19,7 +19,7 @@ const Actions: React.FC = () => {
   const containerRef = React.useRef<HTMLDivElement>(null)
   React.useEffect(() => {
     containerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' })
-  }, [canMove])
+  }, [canMove, isPlaying])
   if (!isCurrentReady) return null
   return (
     <div ref={containerRef} className={styles.actions}>
