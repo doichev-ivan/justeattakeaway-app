@@ -1,7 +1,7 @@
 import io, { Socket } from 'socket.io-client'
 import { SocketDefaultEvents } from './SocketEvents'
 
-class SocketClient {
+export class SocketClient {
   private socket: typeof Socket | null = null
 
   connect (): void {
@@ -15,7 +15,7 @@ class SocketClient {
     }
   }
 
-  emit (eventName: string, data: any): void {
+  emit (eventName: string, data?: any): void {
     if (this.socket != null) {
       this.socket.emit(eventName, data)
     }
@@ -23,7 +23,7 @@ class SocketClient {
 
   on (eventName: string, func: (data: any) => void): void {
     if (this.socket != null) {
-      this.socket.on(eventName, func)
+      this.socket?.on(eventName, func)
     }
   }
 
@@ -45,10 +45,6 @@ class SocketClient {
       }
       // else the socket will automatically try to reconnect
     })
-  }
-
-  get isConnected (): boolean {
-    return this.socket?.connected === true
   }
 }
 

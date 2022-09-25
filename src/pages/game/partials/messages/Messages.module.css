@@ -1,9 +1,14 @@
-.content {
-  padding: 32px 16px;
-  width: 475px;
-  height: 100%;
-  background-color: #FFFFFF;
-  position: relative;
+.message {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  color: #205A6D;
+  margin: 0 0 16px;
+  text-align: center;
+}
+
+.error {
+  color: red
 }
 
 .move {
@@ -16,21 +21,25 @@
   flex-direction: row;
 }
 
-.user {
+.me {
   flex-direction: row-reverse;
 }
 
-.avatar {
+.user {
   width: 40px;
   height: 40px;
 }
 
-.opponent .avatar {
+.opponent .user {
   margin-right: 16px;
 }
 
-.user .avatar {
+.me .user {
   margin-left: 16px;
+}
+
+.avatar {
+  width: 100%;
 }
 
 .details {
@@ -42,7 +51,7 @@
   align-items: flex-start;
 }
 
-.user .details {
+.me .details {
   align-items: flex-end;
 }
 
@@ -63,7 +72,7 @@
   background-color: #205A6D;
 }
 
-.user .action {
+.me .action {
   background-color: #1574F5;
 }
 
@@ -74,4 +83,10 @@
   padding: 9px 16px 7px;
   color: #0A3847;
   margin-top: 8px;
+}
+
+.full {
+  width: 100%;
+  text-align: center;
+  margin: 0 0 16px;
 }

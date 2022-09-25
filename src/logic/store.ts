@@ -3,6 +3,7 @@ import counterReducer from '../features/counter/counterSlice'
 import { gameReducer } from '../pages/game/gameSlice'
 import { loginReducer } from '../pages/login/loginSlice'
 import { roomsReducer } from '../pages/game/partials/rooms/roomsSlice'
+import { messagesReducer } from '../pages/game/partials/messages/messagesSlice'
 import socketClient from '../api/socket/SocketClient'
 import socketMiddleware from './socketMiddleware'
 import {
@@ -17,23 +18,30 @@ import {
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
-const persistConfig = {
-  key: 'justeattakeaway-app',
+const loginPersistConfig = {
+  key: 'justeattakeaway-app/login',
   version: 1,
-  storage
+  storage,
+  whitelist: ['username']
+}
+
+const roomsPersistConfig = {
+  key: 'justeattakeaway-app/rooms',
+  version: 1,
+  storage,
+  whitelist: ['rooms']
 }
 
 const rootReducer = combineReducers({
   counter: counterReducer,
-  login: loginReducer,
-  game: gameReducer,
-  rooms: roomsReducer
+  login: persistReducer(loginPersistConfig, loginReducer),
+  rooms: persistReducer(roomsPersistConfig, roomsReducer),
+  messages: messagesReducer,
+  game: gameReducer
 })
 
-const persistedReducer = persistReducer(persistConfig, rootReducer)
-
 export const store = configureStore({
-  reducer: persistedReducer,
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware({
       serializableCheck: {

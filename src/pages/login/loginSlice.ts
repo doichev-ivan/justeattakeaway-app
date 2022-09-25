@@ -3,10 +3,12 @@ import { RootState } from '../../logic/store'
 
 export interface LoginState {
   username: string | null
+  userid: string | null
 }
 
 const initialState: LoginState = {
-  username: null
+  username: null,
+  userid: null
 }
 
 export const loginSlice = createSlice({
@@ -18,16 +20,19 @@ export const loginSlice = createSlice({
     }>) => {},
     loginEnd: (state, action: PayloadAction<{
       username: string
+      userid: string
     }>) => {
       state.username = action.payload.username
+      state.userid = action.payload.userid
     },
-    loginOut: (state) => {
+    logout: (state) => {
       state.username = null
     }
   }
 })
 
 export const selectUsername = (state: RootState): string | null => state.login.username
+export const selectUserid = (state: RootState): string | null => state.login.userid
 
 export const loginActions = loginSlice.actions
 export const loginReducer = loginSlice.reducer

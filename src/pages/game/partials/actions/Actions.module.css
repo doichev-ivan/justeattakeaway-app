@@ -19,9 +19,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, color 0.3s ease;
 }
 
-.final {
-  background-color: #1574F5;
-  color: #fff;
+.action:hover {
+  box-shadow: 0 0 5px 1px #FF8000;
+  color: #FF8000;
 }

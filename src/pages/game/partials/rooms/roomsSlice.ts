@@ -3,6 +3,7 @@ import restClient from '../../../../api/rest/RestClient'
 import restUrls from '../../../../api/rest/restUrls'
 import { RootState } from '../../../../logic/store'
 import { RoomServer } from '../../../../api/rest/RestTypes'
+import { loginActions } from '../../../login/loginSlice'
 
 export interface Room {
   'id': string // we will use owner as id, because initial id is not unique in db
@@ -14,12 +15,14 @@ export interface RoomsState {
   rooms: Room[]
   status: 'idle' | 'loading' | 'failed'
   currentRoomId?: string
+  isCurrentReady: boolean
 }
 
 const initialState: RoomsState = {
   rooms: [],
   status: 'idle',
-  currentRoomId: undefined
+  currentRoomId: undefined,
+  isCurrentReady: false
 }
 
 export const getRooms = createAsyncThunk(
@@ -39,6 +42,12 @@ export const roomsSlice = createSlice({
       id: string
     }>) => {
       state.currentRoomId = action.payload.id
+      state.isCurrentReady = false
+    },
+    setReady: (state, action: PayloadAction<{
+      isCurrentReady: boolean
+    }>) => {
+      state.isCurrentReady = action.payload.isCurrentReady
     }
   },
   extraReducers: (builder) => {
@@ -53,11 +62,17 @@ export const roomsSlice = createSlice({
       .addCase(getRooms.rejected, (state) => {
         state.status = 'failed'
       })
+      .addCase(loginActions.logout, (state) => {
+        state.currentRoomId = undefined
+        state.isCurrentReady = false
+      })
   }
 })
 
 export const selectRooms = (state: RootState): Room[] => state.rooms.rooms
 export const selectCurrentRoomId = (state: RootState): string | undefined => state.rooms.currentRoomId
+export const selectCurrentRoom = (state: RootState): Room | undefined => selectRooms(state).find(room => room.id === selectCurrentRoomId(state))
+export const selectIsCurrentReady = (state: RootState): boolean => state.rooms.isCurrentReady
 
 export const roomsActions = roomsSlice.actions
 export const roomsReducer = roomsSlice.reducer

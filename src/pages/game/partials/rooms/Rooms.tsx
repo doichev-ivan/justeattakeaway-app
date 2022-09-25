@@ -14,7 +14,9 @@ const Rooms: React.FC = () => {
 
   const items = rooms.map(r => ({ id: r.id, label: r.name })) // room.id was not unique
   const handleSelect = React.useCallback((id: string) => {
-    if (id !== currentRoomId) dispatch(roomsActions.joinRoom({ id }))
+    if (id !== currentRoomId) {
+      dispatch(roomsActions.joinRoom({ id }))
+    }
   }, [currentRoomId])
   return (
     <nav className={styles.rooms}>

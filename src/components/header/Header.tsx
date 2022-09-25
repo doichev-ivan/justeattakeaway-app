@@ -8,7 +8,7 @@ const Header: React.FC = () => {
   const username = useAppSelector(selectUsername)
   const dispatch = useAppDispatch()
   const handleLogout = React.useCallback(() => {
-    dispatch(loginActions.loginOut())
+    dispatch(loginActions.logout())
   }, [dispatch])
   return (
     <header className={styles.header}>

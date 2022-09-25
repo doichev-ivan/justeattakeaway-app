@@ -18,6 +18,6 @@
 }
 
 .input:focus {
-  box-shadow: inset 0 0 5px 0 #FF8000;
+  box-shadow: 0 0 5px 0 #FF8000;
   border-color: #FF8000;
 }

@@ -1,11 +1,13 @@
 .footer {
   background-color: #0A3847;
   padding: 16px;
-  min-height: 72px;
+  height: 72px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: #FFFFFF;
+  position: relative;
+  z-index: 1;
 }
 
 .logo {
