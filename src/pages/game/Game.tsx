@@ -13,7 +13,7 @@ const Game: React.FC = () => {
         <Messages/>
         <Actions/>
       </section>
-      <Final />
+      <Final/>
     </>
   )
 }
