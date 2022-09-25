@@ -1,5 +1,4 @@
 import { configureStore, ThunkAction, Action, combineReducers } from '@reduxjs/toolkit'
-import counterReducer from '../features/counter/counterSlice'
 import { gameReducer } from '../pages/game/gameSlice'
 import { loginReducer } from '../pages/login/loginSlice'
 import { roomsReducer } from '../pages/game/partials/rooms/roomsSlice'
@@ -33,7 +32,6 @@ const roomsPersistConfig = {
 }
 
 const rootReducer = combineReducers({
-  counter: counterReducer,
   login: persistReducer(loginPersistConfig, loginReducer),
   rooms: persistReducer(roomsPersistConfig, roomsReducer),
   messages: messagesReducer,
